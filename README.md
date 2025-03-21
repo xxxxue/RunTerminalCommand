@@ -4,8 +4,6 @@ Run predefined terminal commands from Explorer context menu or Command Palette.
 
 ## See how it works
 
-![Example](img/example.gif)
-
 ## Configuration
 
 ### How to edit your command list:
@@ -52,6 +50,32 @@ Now you can edit the commands you want:
             "group": ".NET Core"
         }
     ]
+```
+
+or create `.vscode/settings.json`
+
+```
+{
+  "runTerminalCommand.commands": [
+    {
+      "name": "tsx run file",
+      "command": "tsx {resource}",
+      "auto": true
+    },
+    {
+      "name": "bun2 run file",
+      "command": "bun {resource}",
+      "auto": true,
+      "group": "js"
+    },
+    {
+      "name": "node2 run file",
+      "command": "node {resource}",
+      "auto": true,
+      "group": "js"
+    }
+  ]
+}
 ```
 
 ### Properties

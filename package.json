@@ -1,6 +1,6 @@
 {
-  "name": "terminal-commands",
-  "displayName": "Run Terminal Command",
+  "name": "my-run-terminal-commands",
+  "displayName": "my-run-terminal-command",
   "description": "Run predefined terminal commands from Explorer context menu or Command Palette.",
   "publisher": "adrianwilczynski",
   "repository": {
@@ -8,9 +8,9 @@
     "url": "https://github.com/AdrianWilczynski/RunTerminalCommand.git"
   },
   "icon": "img/icon.png",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "engines": {
-    "vscode": "^1.33.0"
+    "vscode": "^1.96.4"
   },
   "categories": [
     "Other"
@@ -26,15 +26,13 @@
     "Command Line",
     "Run"
   ],
-  "activationEvents": [
-    "onCommand:extension.runTerminalCommand"
-  ],
+  "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "extension.runTerminalCommand",
-        "title": "Run Terminal Command..."
+        "title": "★ 运行终端命令"
       }
     ],
     "menus": {
@@ -114,17 +112,19 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install",
+    "build": "npx vsce package",
+    "vscode:prepublish": "npm run compile",
     "test": "npm run compile && node ./node_modules/vscode/bin/test"
   },
   "devDependencies": {
-    "typescript": "^3.3.1",
-    "vscode": "^1.1.28",
-    "tslint": "^5.12.1",
+    "@types/mocha": "^2.2.42",
     "@types/node": "^10.12.21",
-    "@types/mocha": "^2.2.42"
+    "@types/vscode": "^1.96.0",
+    "@vscode/vsce": "^3.2.1",
+    "tslint": "^5.12.1",
+    "typescript": "^5.7.3",
+    "vscode-test": "^1.6.1"
   }
 }

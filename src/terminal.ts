@@ -8,18 +8,24 @@ export async function runCommand(
   cwd?: string,
   resource?: string,
 ) {
-  const terminal = vscode.window.createTerminal({ cwd: cwd });
-  terminal.show();
-
-  ensureDisposed();
-
   const result = await insertVariables(command.command, resource);
-
-  terminal.sendText(result.command, command.auto && result.successful);
-
-  if (!command.preserve) {
-    previousTerminal = terminal;
-  }
+  const task = new vscode.Task(
+    { type: "shell" }, // 任务类型
+    vscode.TaskScope.Workspace, // 作用域
+    result.command.split(" ")[0], // 任务名称
+    "my-run-terminal-command", // 源名称
+    new vscode.ShellExecution(result.command, {
+      cwd: cwd, // 执行命令,并设置工作目录 (重要)(起到了切换目录的作用)
+    }),
+  );
+  // 配置终端行为（关键：重用同一面板）
+  task.presentationOptions = {
+    reveal: vscode.TaskRevealKind.Always, // 始终显示终端
+    panel: vscode.TaskPanelKind.Shared, // 共享终端面板
+    clear: false, // 不清空历史
+  };
+  // 执行任务
+  vscode.tasks.executeTask(task);
 }
 
 function ensureDisposed() {
