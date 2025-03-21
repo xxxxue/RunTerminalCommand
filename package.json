@@ -1,6 +1,6 @@
 {
-  "name": "my-run-terminal-commands",
-  "displayName": "my-run-terminal-command",
+  "name": "a-my-run-terminal-commands",
+  "displayName": "a-my-run-terminal-command",
   "description": "Run predefined terminal commands from Explorer context menu or Command Palette.",
   "publisher": "adrianwilczynski",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "https://github.com/AdrianWilczynski/RunTerminalCommand.git"
   },
   "icon": "img/icon.png",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "engines": {
     "vscode": "^1.96.4"
   },
