@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { TerminalCommand } from "./command";
-
+import * as path from "path";
 let previousTerminal: vscode.Terminal | undefined;
 
 export async function runCommand(
@@ -8,16 +8,31 @@ export async function runCommand(
   cwd?: string,
   resource?: string,
 ) {
-  const result = await insertVariables(command.command, resource);
+  // 资源完整路径
+  let resourceFullPath = "";
+  if (cwd && resource) {
+    resourceFullPath = path.join(cwd, resource);
+  }
+
+  // vscode 打开的工作区
+  let workPath = "";
+  const workspaceFolders = vscode.workspace.workspaceFolders;
+  if (workspaceFolders) {
+    workPath = workspaceFolders[0].uri.fsPath;
+  }
+
+  const result = await insertVariables(command.command, resourceFullPath);
+
   const task = new vscode.Task(
     { type: "shell" }, // 任务类型
     vscode.TaskScope.Workspace, // 作用域
     result.command.split(" ")[0], // 任务名称
     "my-run-terminal-command", // 源名称
     new vscode.ShellExecution(result.command, {
-      cwd: cwd, // 执行命令,并设置工作目录 (重要)(起到了切换目录的作用)
+      cwd: workPath, // 执行命令,并设置工作目录 (重要)(起到了切换目录的作用)
     }),
   );
+
   // 配置终端行为（关键：重用同一面板）
   task.presentationOptions = {
     reveal: vscode.TaskRevealKind.Always, // 始终显示终端
