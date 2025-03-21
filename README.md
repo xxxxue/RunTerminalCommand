@@ -7,16 +7,17 @@ Run predefined terminal commands from Explorer context menu or Command Palette.
 ![Example](img/example.gif)
 
 ## Configuration
+
 ### How to edit your command list:
 
-VSCode -> File -> Preferences -> Settings 
+VSCode -> File -> Preferences -> Settings
 
 It will show the list: [Text Editor, Workbench, Window, Features, Application, Extension].
 
 Click on "Extensions", Scroll down and click on "Run Terminal Command" -> Edit in Settings.Json
 
 Or just open and edit directly the file:
-```C:\Users\{YOUR USERNAME}\AppData\Roaming\Code\User\Settings.Json```
+`C:\Users\{YOUR USERNAME}\AppData\Roaming\Code\User\Settings.Json`
 
 Now you can edit the commands you want:
 
@@ -54,8 +55,9 @@ Now you can edit the commands you want:
 ```
 
 ### Properties
+
 | Property | Description                                                                                                   |
-|----------|---------------------------------------------------------------------------------------------------------------|
+| -------- | ------------------------------------------------------------------------------------------------------------- |
 | command  | The text to send to the terminal.                                                                             |
 | auto     | Whether to add a new line to the text being sent, this is normally required to run a command in the terminal. |
 | preserve | Don't dispose of terminal running this command.                                                               |
@@ -63,7 +65,8 @@ Now you can edit the commands you want:
 | group    | Commands sharing the group name will be grouped together in the menu.                                         |
 
 ### Variables
-| Variable    | Description                                                                                                |
-|-------------|------------------------------------------------------------------------------------------------------------|
-| {resource}  | Name of current resource.                                                                                  |
-| {clipboard} | Clipboard content.                                                                                         |
+
+| Variable    | Description               |
+| ----------- | ------------------------- |
+| {resource}  | Name of current resource. |
+| {clipboard} | Clipboard content.        |
